@@ -22,7 +22,7 @@ class IntegerDivisionTest {
     }
 
     @Test
-    void divideInt_shouldReturnFormattedQuotientAndResult_WhenCasualInputUAFormatting_1() {
+    void divideInt_shouldReturnFormattedQuotientAndResult_WhenCasualInput_1() {
         String expectedResult = 
                   "_147\n"
                   + " 140\n"
