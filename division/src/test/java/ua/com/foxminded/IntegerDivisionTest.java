@@ -22,7 +22,7 @@ class IntegerDivisionTest {
     }
 
     @Test
-    void divideInt_shouldReturnFormattedQuotientAndResult_WhenCasualInput_1() {
+    void divideInt_shouldReturnFormattedQuotientAndResult_WhenCasualInputUAFormatting_1() {
         String expectedResult = 
                   "_147\n"
                   + " 140\n"
@@ -43,7 +43,7 @@ class IntegerDivisionTest {
     }
 
     @Test
-    void divideInt_shouldReturnFormattedString_WhenCasualInput_2() {
+    void divideInt_shouldReturnFormattedString_WhenCasualInputUAFormatting_2() {
         String expected = "_10000│1000\n" + 
                           " 1000 │--\n" + 
                           " ---- │10\n" + 
