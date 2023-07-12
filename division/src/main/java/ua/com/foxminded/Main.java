@@ -27,7 +27,7 @@ public class Main {
             
             IntegerDivision integerDivision = new IntegerDivision();
             DivisionResult result = integerDivision.divide(dividend, divisor);
-            DivisionFormatter formatter = new DivisionFormatter();
+            DivisionFormatterUA formatter = new DivisionFormatterUA();
             System.out.println(formatter.format(result));
 
         }finally {

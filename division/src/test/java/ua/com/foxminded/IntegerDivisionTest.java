@@ -49,6 +49,6 @@ class IntegerDivisionTest {
                           " ---- │10\n" + 
                           "     0\n";
 
-        assertEquals(expected, new DivisionFormatter().format(integerDivision.divide(10000, 1000)));
+        assertEquals(expected, new DivisionFormatterUA().format(integerDivision.divide(10000, 1000)));
     }
 }

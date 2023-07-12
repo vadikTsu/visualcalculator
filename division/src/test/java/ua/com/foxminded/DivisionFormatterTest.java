@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class DivisionFormatterTest {
+class DivisionFormatterUATest {
     
     @Test
     void  format_shouldRReturnNullPointerException_whenNull() {
         assertThrows(NullPointerException.class, () -> {
-            new DivisionFormatter().format(null);
+            new DivisionFormatterUA().format(null);
         });
     }
     //TODO implement other tests 
