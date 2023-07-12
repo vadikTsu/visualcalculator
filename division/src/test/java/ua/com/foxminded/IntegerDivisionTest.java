@@ -17,31 +17,29 @@ class IntegerDivisionTest {
     @Test
     void divideInt_shouldReturnIllegalArgumentException_WhenDivisorIsZero() {
         assertThrows(IllegalArgumentException.class, () -> {
-            integerDivision.divideInt(0, 0, 0);
+            integerDivision.divide(0, 0);
         });
     }
 
     @Test
-    void divideInt_shouldReturnNullPointerException_WhenNull() {
-        assertThrows(NullPointerException.class, () -> {
-            integerDivision.divideInt(null, null, null);
-        });
-    }
+    void divideInt_shouldReturnFormattedQuotientAndResult_WhenCasualInput_1() {
+        String expectedResult = 
+                  "_147\n"
+                  + " 140\n"
+                  + " ---\n"
+                  + "  _78\n"
+                  + "   60\n"
+                  + "   --\n"
+                  + "  _189\n"
+                  + "   180\n"
+                  + "   ---\n"
+                  + "     9\n"
+                  + "";
 
-    @Test
-    void divideInt_shouldReturnFormattedString_WhenCasualInput_1() {
-        String expected = "_14789│20\n" + 
-                          " 140  │---\n" + 
-                          " ---  │739\n" + 
-                         "  _78\n" + 
-                         "   60\n" + 
-                         "   --\n" + 
-                         "  _189\n" + 
-                         "   180\n" + 
-                         "   ---\n" + 
-                         "     9\n";
+        String expectedQuotient = "739";
 
-        assertEquals(expected, integerDivision.divideInt(14789, 20, 0));
+        assertEquals(expectedResult, integerDivision.divide(14789, 20).result.toString());
+        assertEquals(expectedQuotient, integerDivision.divide(14789, 20).quotient.toString());
     }
 
     @Test
@@ -51,31 +49,6 @@ class IntegerDivisionTest {
                           " ---- │10\n" + 
                           "     0\n";
 
-        assertEquals(expected, integerDivision.divideInt(10000, 1000, 0));
+        assertEquals(expected, new DivisionFormatter().format(integerDivision.divide(10000, 1000)));
     }
-    
-    @Test
-    void divideInt_shouldReturnFormattedString_WhenNotZeroCapacity() {
-        String expected = 
-                  "_14│3\n"
-                + " 12│------\n"
-                + " --│4.6666\n"
-                + "  2\n"
-                + " _20\n"
-                + "  18\n"
-                + "  --\n"
-                + "  _20\n"
-                + "   18\n"
-                + "   --\n"
-                + "   _20\n"
-                + "    18\n"
-                + "    --\n"
-                + "    _20\n"
-                + "     18\n"
-                + "     --\n"
-                + "";
-        
-        assertEquals(expected, integerDivision.divideInt(14, 3, 4));
-    }
-    
 }
