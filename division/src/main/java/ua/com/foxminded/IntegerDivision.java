@@ -14,6 +14,9 @@
  */
 package ua.com.foxminded;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class IntegerDivision {
 
     /**
@@ -25,63 +28,40 @@ public class IntegerDivision {
      * @param dividend the dividend to be divided (an integer)
      * @param divisor  the divisor (an integer)
      * @throws IllegalArgumentException if the divisor is zero
-     * @return a well-formatted string representing the integer division algorithm
+     * @return a DivisionResult object representing the integer division algorithm
      * @author vadimtsudenko@gmail.com
      */
     public DivisionResult divide(int dividend, int divisor) {
-        StringBuilder result = new StringBuilder();
-        StringBuilder quotient = new StringBuilder();
-        StringBuilder buffer = new StringBuilder();
-        if (divisor == 0) {
-            
-            throw new IllegalArgumentException("Cannot divide by zero");
+        if (divisor < dividend || divisor == 0) {
+            throw new IllegalArgumentException("Illegal argument!");
         }
+        
+        int answer = dividend / divisor;
+        List<Integer> reminderArr = new ArrayList<>();
+        List<Integer> multipleArr = new ArrayList<>();
+        List<Integer> expArr = new ArrayList<>();
 
-        dividend = Math.abs(dividend);
-        divisor = Math.abs(divisor);
-
-        String[] digits = String.valueOf(dividend).split("");
-        Integer bufferNum;
-        Integer entire;
-        Integer fraction;
-        Integer divisorDigits = DivisionFormatter.calculateDigits(divisor);
-
-        if (dividend < divisor) {
-            quotient.append("0.");
-        }
-
-        for (int i = 0; i < digits.length; i++) {
-            buffer.append(digits[i]);
-            bufferNum = Integer.parseInt(buffer.toString());
-            if (bufferNum >= divisor) {
-                fraction = bufferNum % divisor;
-                entire = bufferNum / divisor * divisor;
-                String lastReminder = String.format("%" + (i + 2) + "s", "_" + bufferNum.toString());
-                result.append(lastReminder).append("\n");
-
-                String multiply = String.format("%" + (i + 2) + "d", entire);
-                result.append(multiply).append("\n");
-
-                Integer tab = lastReminder.length() - DivisionFormatter.calculateDigits(entire);
-                result.append(DivisionFormatter.makeDivider(bufferNum, tab)).append("\n");
-
-                quotient.append(bufferNum / divisor);
-
-                buffer.replace(0, buffer.length(), fraction.toString());
-                bufferNum = Integer.parseInt(buffer.toString());
-
-            } else {
-                if (i >= divisorDigits) {
-                    quotient.append(0);
-                }
+        int remainder = dividend;
+        while (remainder != dividend % divisor) {
+            String test = Integer.toString(remainder);
+            int sub = Integer.parseInt(test.substring(0, 1));
+            test = test.substring(1);
+            int exp = (int) Math.log10(remainder);
+            while (sub < divisor) {
+                sub = sub * 10 + Integer.parseInt(test.substring(0, 1));
+                test = test.substring(1);
+                exp--;
             }
 
-            if (i == digits.length - 1) {
-                result.append(String.format("%" + (i + 2) + "s", bufferNum.toString())).append("\n");
-            }
-        }
+            reminderArr.add(sub);
+            expArr.add(exp);
 
-        return new DivisionResult(quotient, result, dividend, divisor);
+            int multiple = sub - (sub % divisor);
+            multipleArr.add(multiple);
+
+            remainder -= multiple * Math.pow(10, exp);
+        }
+        return new DivisionResult(reminderArr, multipleArr, expArr, divisor, dividend, dividend % divisor, answer);
     }
 }
 

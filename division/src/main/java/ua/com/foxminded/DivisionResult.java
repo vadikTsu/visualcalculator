@@ -14,12 +14,17 @@
  */
 package ua.com.foxminded;
 
+import java.util.List;
+
 public class DivisionResult {
 
-    Integer dividend;
+    List<Integer> reminder;
+    List<Integer> multiple;
+    List<Integer> exp;
     Integer divisor;
-    StringBuilder quotient;
-    StringBuilder result;
+    Integer dividend;
+    Integer fraction;
+    Integer quotient;
 
     /**
      * Constructs a DivisionResult object.
@@ -29,10 +34,14 @@ public class DivisionResult {
      * @param _dividend the dividend value used in the division
      * @param _divisor  the divisor value used in the division
      */
-    public DivisionResult(StringBuilder _quotient, StringBuilder _result, int _dividend, int _divisor) {
-        this.quotient = _quotient;
-        this.result = _result;
-        this.dividend = _dividend;
-        this.divisor = _divisor;
+    public DivisionResult(List<Integer> reminder, List<Integer> multiple, List<Integer> exp, Integer divisor,
+            Integer dividend, Integer fraction, Integer quotient) {
+        this.reminder = reminder;
+        this.multiple = multiple;
+        this.exp = exp;
+        this.divisor = divisor;
+        this.dividend = dividend;
+        this.fraction = fraction;
+        this.quotient = quotient;
     }
 }
