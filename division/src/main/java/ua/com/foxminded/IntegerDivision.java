@@ -32,36 +32,48 @@ public class IntegerDivision {
      * @author vadimtsudenko@gmail.com
      */
     public DivisionResult divide(int dividend, int divisor) {
-        if (divisor < dividend || divisor == 0) {
-            throw new IllegalArgumentException("Illegal argument!");
+        if (divisor == 0) {
+            throw new IllegalArgumentException("Illegal argument! Division by Zero.");
         }
+        int dividendSize =(int) Math.log10(Math.abs(dividend)) + 1;
+        int[] dividendDigits = this.toArray(dividend);
+        int rightIndex = 0;
+        int reminder = dividendDigits[rightIndex];
+        int fraction;
+        List<Integer> reminderList = new ArrayList<>();
+        List<Integer> multipleList = new ArrayList<>();     
+        List<Integer> pointerList = new ArrayList<>();
+        List<Integer> quotient = new ArrayList<>();
         
-        int answer = dividend / divisor;
-        List<Integer> reminderArr = new ArrayList<>();
-        List<Integer> multipleArr = new ArrayList<>();
-        List<Integer> expArr = new ArrayList<>();
-
-        int remainder = dividend;
-        while (remainder != dividend % divisor) {
-            String test = Integer.toString(remainder);
-            int sub = Integer.parseInt(test.substring(0, 1));
-            test = test.substring(1);
-            int exp = (int) Math.log10(remainder);
-            while (sub < divisor) {
-                sub = sub * 10 + Integer.parseInt(test.substring(0, 1));
-                test = test.substring(1);
-                exp--;
+        
+        while (rightIndex < dividendSize-1) {
+            if (reminder >= divisor) {
+                quotient.add(reminder / divisor);
+                reminderList.add(reminder);
+                multipleList.add(reminder / divisor * divisor);
+                pointerList.add(rightIndex + 1);
+                reminder = reminder % divisor;
             }
-
-            reminderArr.add(sub);
-            expArr.add(exp);
-
-            int multiple = sub - (sub % divisor);
-            multipleArr.add(multiple);
-
-            remainder -= multiple * Math.pow(10, exp);
+            rightIndex++;
+            reminder = reminder * 10 + dividendDigits[rightIndex];
         }
-        return new DivisionResult(reminderArr, multipleArr, expArr, divisor, dividend, dividend % divisor, answer);
+        quotient.add(reminder / divisor);
+        reminderList.add(reminder);
+        multipleList.add(reminder / divisor * divisor);
+        pointerList.add(rightIndex + 1);
+        fraction = reminder % divisor;
+        return new DivisionResult(reminderList, multipleList, pointerList, divisor, dividend, fraction, quotient);
     }
+
+    private int[] toArray(int number) {
+        String numberString = String.valueOf(number);
+        int[] digits = new int[numberString.length()];
+        for (int i = 0; i < numberString.length(); i++) {
+            char digitChar = numberString.charAt(i);
+            digits[i] = Character.getNumericValue(digitChar);
+        }
+        return digits;
+    }
+
 }
 

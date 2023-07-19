@@ -24,10 +24,10 @@ public class Main {
             System.out.println("Enter dividend and divisor:\n");
             int dividend = scanner.nextInt();
             int divisor = scanner.nextInt();
-            
+
             IntegerDivision integerDivision = new IntegerDivision();
-            DivisionResult result = integerDivision.divide(dividend, divisor);
             DivisionFormatterUA formatter = new DivisionFormatterUA();
+            DivisionResult result = integerDivision.divide(dividend, divisor);
             System.out.println(formatter.format(result));
 
         }finally {

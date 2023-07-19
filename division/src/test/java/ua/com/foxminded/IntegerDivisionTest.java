@@ -2,6 +2,9 @@ package ua.com.foxminded;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,32 +26,28 @@ class IntegerDivisionTest {
 
     @Test
     void divideInt_shouldReturnFormattedQuotientAndResult_WhenCasualInput_1() {
-        String expectedResult = 
-                  "_147\n"
-                  + " 140\n"
-                  + " ---\n"
-                  + "  _78\n"
-                  + "   60\n"
-                  + "   --\n"
-                  + "  _189\n"
-                  + "   180\n"
-                  + "   ---\n"
-                  + "     9\n"
-                  + "";
+        DivisionResult expectedResult = new DivisionResult(Arrays.asList(123, 456), 
+                Arrays.asList(123, 369), Arrays.asList(3,6), 123, 123456, 87, Arrays.asList(1,3));
 
-        String expectedQuotient = "739";
 
-        assertEquals(expectedResult, integerDivision.divide(14789, 20).result.toString());
-        assertEquals(expectedQuotient, integerDivision.divide(14789, 20).quotient.toString());
+        assertEquals(expectedResult, integerDivision.divide(123456, 123));
     }
 
     @Test
-    void divideInt_shouldReturnFormattedString_WhenCasualInputUAFormatting_2() {
-        String expected = "_10000│1000\n" + 
-                          " 1000 │--\n" + 
-                          " ---- │10\n" + 
-                          "     0\n";
+    void divideInt_shouldReturnFormattedQuotientAndResult_WhenCasualInput_2() {
+        DivisionResult expectedResult = new DivisionResult(Arrays.asList(1234, 2085,3367,2898), Arrays.asList(1026, 2052,3078,2736),
+                Arrays.asList(4, 5,7 , 8), 342, 12345678, 162, Arrays.asList(3,6,9,8));
 
-        assertEquals(expected, new DivisionFormatterUA().format(integerDivision.divide(10000, 1000)));
+        assertEquals(expectedResult, integerDivision.divide(12345678, 342));
+    }
+    
+    @Test
+    void divideInt_shouldReturnFormattedQuotientAndResult_WhenCasualInput_3() {
+        DivisionResult expectedResult = new DivisionResult(Arrays.asList(987, 398,292,463), Arrays.asList(984, 369,246,369),
+                Arrays.asList(3, 5,6 , 7), 123, 9879823, 94, Arrays.asList(8,3,2,3));
+        
+        assertEquals(expectedResult, integerDivision.divide(9879823, 123));
     }
 }
+
+
