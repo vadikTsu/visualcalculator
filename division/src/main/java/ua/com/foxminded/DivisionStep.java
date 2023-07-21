@@ -1,15 +1,27 @@
 package ua.com.foxminded;
 
 public class DivisionStep {
-    
-    Integer reminder;
-    Integer multiple;
-    Integer pointer = 1;
+
+    private Integer reminder;
+    private Integer multiple;
+    private Integer pointer;
 
     public DivisionStep(Integer reminder, Integer multiple, Integer pointer) {
         this.multiple = multiple;
         this.pointer = pointer;
         this.reminder = reminder;
+    }
+
+    public Integer getReminder() {
+        return reminder;
+    }
+
+    public Integer getMultiple() {
+        return multiple;
+    }
+
+    public Integer getPointer() {
+        return pointer;
     }
 
     @Override
@@ -22,9 +34,7 @@ public class DivisionStep {
             return false;
         }
         DivisionStep other = (DivisionStep) obj;
-        return reminder.equals(other.reminder) && 
-                multiple.equals(other.multiple) && 
-                pointer.equals(other.pointer);
+        return reminder.equals(other.reminder) && multiple.equals(other.multiple) && pointer.equals(other.pointer);
 
     }
 }

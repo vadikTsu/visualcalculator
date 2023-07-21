@@ -19,10 +19,10 @@ import java.util.List;
 public class DivisionResult {
 
     List<DivisionStep> divisionSteps;
-    Integer quotient;
-    Integer divisor;
-    Integer dividend;
-    Integer fraction;
+    private Integer quotient;
+    private Integer divisor;
+    private Integer dividend;
+    private Integer fraction;
 
     /**
      * Constructs a DivisionResult object.
@@ -36,13 +36,29 @@ public class DivisionResult {
      * @see {@link IntegerDivision}
      * @see {@link DivisionFormatter}
      */
-    public DivisionResult(List<DivisionStep> divisionSteps, Integer divisor,
-            Integer dividend, Integer fraction,Integer quotient) {
+    public DivisionResult(List<DivisionStep> divisionSteps, Integer divisor, Integer dividend, Integer fraction,
+            Integer quotient) {
         this.divisionSteps = divisionSteps;
         this.divisor = divisor;
         this.dividend = dividend;
         this.fraction = fraction;
         this.quotient = quotient;
+    }
+
+    public Integer getQuotient() {
+        return quotient;
+    }
+
+    public Integer getDivisor() {
+        return divisor;
+    }
+
+    public Integer getDividend() {
+        return dividend;
+    }
+
+    public Integer getFraction() {
+        return fraction;
     }
 
     @Override

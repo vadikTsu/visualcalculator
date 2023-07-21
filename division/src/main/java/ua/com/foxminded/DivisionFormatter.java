@@ -15,14 +15,14 @@ public abstract class DivisionFormatter {
     /**
      * Generates a string consisting of a specified number of the given character.
      *
-     * @param num the number of characters in the string
-     * @param c the character to repeat in the string
+     * @param number the number of characters in the string
+     * @param chararcter the character to repeat in the string
      * @return a string consisting of the specified number of characters
      */
-    String createString(int num, char c) {
+    String repeatString(int number, char chararcter) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < num; i++) {
-            sb.append(c);
+        for (int i = 0; i < number; i++) {
+            sb.append(chararcter);
         }
         return sb.toString();
     }
