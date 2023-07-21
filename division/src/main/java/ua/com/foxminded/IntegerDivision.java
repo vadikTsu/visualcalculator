@@ -15,6 +15,7 @@
 package ua.com.foxminded;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class IntegerDivision {
@@ -36,34 +37,45 @@ public class IntegerDivision {
             throw new IllegalArgumentException("Illegal argument! Division by Zero.");
         }
         int dividendSize =(int) Math.log10(Math.abs(dividend)) + 1;
+        int divisorSize = (int) Math.log10(Math.abs(divisor)) + 1;
         int[] dividendDigits = this.toArray(dividend);
         int rightIndex = 0;
         int reminder = dividendDigits[rightIndex];
         int fraction;
+
         List<Integer> reminderList = new ArrayList<>();
-        List<Integer> multipleList = new ArrayList<>();     
+        List<Integer> multipleList = new ArrayList<>();
         List<Integer> pointerList = new ArrayList<>();
-        List<Integer> quotient = new ArrayList<>();
-        
-        
-        while (rightIndex < dividendSize-1) {
+//        List<Integer> quotient = new ArrayList<>();
+        Integer quotient = 0;
+
+        while (rightIndex < dividendSize - 1) {  
+
+
             if (reminder >= divisor) {
-                quotient.add(reminder / divisor);
+                quotient += reminder / divisor;
                 reminderList.add(reminder);
                 multipleList.add(reminder / divisor * divisor);
                 pointerList.add(rightIndex + 1);
                 reminder = reminder % divisor;
             }
+            
             rightIndex++;
+
             reminder = reminder * 10 + dividendDigits[rightIndex];
+            quotient *= 10;
+
         }
-        quotient.add(reminder / divisor);
+   
+        quotient+=reminder / divisor;
         reminderList.add(reminder);
         multipleList.add(reminder / divisor * divisor);
         pointerList.add(rightIndex + 1);
+
         fraction = reminder % divisor;
         return new DivisionResult(reminderList, multipleList, pointerList, divisor, dividend, fraction, quotient);
     }
+    
 
     private int[] toArray(int number) {
         String numberString = String.valueOf(number);
