@@ -21,7 +21,7 @@ public class DivisionResult {
     List<Integer> reminderList;
     List<Integer> multipleList;
     List<Integer> pointerList;
-    List<Integer> quotientList;
+    Integer quotient;
     Integer divisor;
     Integer dividend;
     Integer fraction;
@@ -35,14 +35,14 @@ public class DivisionResult {
      * @param _divisor  the divisor value used in the division
      */
     public DivisionResult(List<Integer> reminderList, List<Integer> multipleList, List<Integer> pointerList,
-            Integer divisor, Integer dividend, Integer fraction, List<Integer> quotientList) {
+            Integer divisor, Integer dividend, Integer fraction, Integer quotient) {
         this.reminderList = reminderList;
         this.multipleList = multipleList;
         this.pointerList = pointerList;
         this.divisor = divisor;
         this.dividend = dividend;
         this.fraction = fraction;
-        this.quotientList = quotientList;
+        this.quotient = quotient;
     }
 
     @Override
@@ -57,6 +57,6 @@ public class DivisionResult {
         return reminderList.equals(other.reminderList) && multipleList.equals(other.multipleList)
                 && pointerList.equals(other.pointerList) && divisor.equals(other.divisor)
                 && dividend.equals(other.dividend) && fraction.equals(other.fraction)
-                && quotientList.equals(other.quotientList);
+                && quotient.equals(other.quotient);
     }
 }

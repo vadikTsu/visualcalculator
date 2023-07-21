@@ -45,8 +45,8 @@ public class DivisionFormatterUA extends DivisionFormatter {
             result.append(String.format(" %s%s%s", createString(divisionRes.pointerList.get(i) - mulLen, ' '),
                     createString(mulLen, '-'), createString(len - divisionRes.pointerList.get(i), ' ')))
                     .append(NEW_LINE);
-
         }
+        
         result.append(String.format(" %" + len + "s", divisionRes.fraction)).append(NEW_LINE);
 
         int[] index = new int[3];
@@ -61,10 +61,10 @@ public class DivisionFormatterUA extends DivisionFormatter {
         }
 
         result.insert(index[2],
-                "│" + divisionRes.quotientList.stream().map(Object::toString).collect(Collectors.joining()));
+                "│" + divisionRes.quotient.toString()) /*.stream().map(Object::toString).collect(Collectors.joining()))*/;
 
         result.insert(index[1], createString(len - divisionRes.pointerList.get(0), ' ') + "│"
-                + createString(divisionRes.quotientList.size(), '-'));
+                + createString(divisionRes.quotient.toString().length(), '-'));
         result.insert(index[0], "│" + divisionRes.divisor);
         result.replace(1, index[0], divisionRes.dividend.toString());
 
