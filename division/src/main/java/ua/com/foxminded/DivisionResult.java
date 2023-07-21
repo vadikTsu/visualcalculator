@@ -18,9 +18,7 @@ import java.util.List;
 
 public class DivisionResult {
 
-    List<Integer> reminderList;
-    List<Integer> multipleList;
-    List<Integer> pointerList;
+    List<DivisionStep> divisionSteps;
     Integer quotient;
     Integer divisor;
     Integer dividend;
@@ -29,16 +27,18 @@ public class DivisionResult {
     /**
      * Constructs a DivisionResult object.
      *
-     * @param _quotient the quotient of the division
-     * @param _result   the formatted result of the division algorithm
-     * @param _dividend the dividend value used in the division
-     * @param _divisor  the divisor value used in the division
+     * 
+     * @param quotient      the quotient of the division
+     * @param divisionSteps the list of DivisionStep objects
+     * @param fraction      of division
+     * @param dividend      the dividend value used in the division
+     * @param divisor       the divisor value used in the division
+     * @see {@link IntegerDivision}
+     * @see {@link DivisionFormatter}
      */
-    public DivisionResult(List<Integer> reminderList, List<Integer> multipleList, List<Integer> pointerList,
-            Integer divisor, Integer dividend, Integer fraction, Integer quotient) {
-        this.reminderList = reminderList;
-        this.multipleList = multipleList;
-        this.pointerList = pointerList;
+    public DivisionResult(List<DivisionStep> divisionSteps, Integer divisor,
+            Integer dividend, Integer fraction,Integer quotient) {
+        this.divisionSteps = divisionSteps;
         this.divisor = divisor;
         this.dividend = dividend;
         this.fraction = fraction;
@@ -54,8 +54,7 @@ public class DivisionResult {
             return false;
         }
         DivisionResult other = (DivisionResult) obj;
-        return reminderList.equals(other.reminderList) && multipleList.equals(other.multipleList)
-                && pointerList.equals(other.pointerList) && divisor.equals(other.divisor)
+        return this.divisionSteps.equals(other.divisionSteps) && divisor.equals(other.divisor)
                 && dividend.equals(other.dividend) && fraction.equals(other.fraction)
                 && quotient.equals(other.quotient);
     }

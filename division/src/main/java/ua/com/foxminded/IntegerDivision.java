@@ -15,7 +15,6 @@
 package ua.com.foxminded;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class IntegerDivision {
@@ -31,51 +30,48 @@ public class IntegerDivision {
      * @throws IllegalArgumentException if the divisor is zero
      * @return a DivisionResult object representing the integer division algorithm
      * @author vadimtsudenko@gmail.com
+     * @see {@link DivisionFormatter}
+     * @see {@link DivisionResult}
+     * @see {@link DivisionStep}
      */
     public DivisionResult divide(int dividend, int divisor) {
         if (divisor == 0) {
             throw new IllegalArgumentException("Illegal argument! Division by Zero.");
         }
-        int dividendSize =(int) Math.log10(Math.abs(dividend)) + 1;
-        int divisorSize = (int) Math.log10(Math.abs(divisor)) + 1;
+    
+        int dividendSize = (int) Math.log10(Math.abs(dividend)) + 1;
         int[] dividendDigits = this.toArray(dividend);
         int rightIndex = 0;
         int reminder = dividendDigits[rightIndex];
-        int fraction;
-
-        List<Integer> reminderList = new ArrayList<>();
-        List<Integer> multipleList = new ArrayList<>();
-        List<Integer> pointerList = new ArrayList<>();
-//        List<Integer> quotient = new ArrayList<>();
+        List<DivisionStep> divisionSteps = new ArrayList<>();
         Integer quotient = 0;
-
-        while (rightIndex < dividendSize - 1) {  
-
+        
+        if (dividend == 0) {
+            divisionSteps.add(new DivisionStep(reminder, reminder / divisor * divisor, rightIndex + 1));
+        }
+        while (rightIndex < dividendSize - 1) {
 
             if (reminder >= divisor) {
                 quotient += reminder / divisor;
-                reminderList.add(reminder);
-                multipleList.add(reminder / divisor * divisor);
-                pointerList.add(rightIndex + 1);
+                divisionSteps.add(new DivisionStep(reminder, reminder / divisor * divisor, rightIndex + 1));
                 reminder = reminder % divisor;
             }
-            
+
             rightIndex++;
 
             reminder = reminder * 10 + dividendDigits[rightIndex];
             quotient *= 10;
 
         }
-   
-        quotient+=reminder / divisor;
-        reminderList.add(reminder);
-        multipleList.add(reminder / divisor * divisor);
-        pointerList.add(rightIndex + 1);
 
-        fraction = reminder % divisor;
-        return new DivisionResult(reminderList, multipleList, pointerList, divisor, dividend, fraction, quotient);
+        quotient += reminder / divisor;
+        if (reminder >= divisor) {
+            divisionSteps.add(new DivisionStep(reminder, reminder / divisor * divisor, rightIndex + 1));
+        }
+
+        int lastReminder = reminder % divisor;
+        return new DivisionResult(divisionSteps, divisor, dividend, lastReminder, quotient);
     }
-    
 
     private int[] toArray(int number) {
         String numberString = String.valueOf(number);
@@ -88,4 +84,3 @@ public class IntegerDivision {
     }
 
 }
-

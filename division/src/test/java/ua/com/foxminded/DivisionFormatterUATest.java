@@ -27,61 +27,47 @@ class DivisionFormatterUATest {
     
     @Test
     void divideInt_shouldReturnFormattedString_WhenCasualDivisionResult_1() {
-        DivisionResult actualResult = new DivisionResult(Arrays.asList(987, 398, 292, 463),
-                Arrays.asList(984, 369, 246, 369), Arrays.asList(3, 5, 6, 7), 123, 9879823, 94,
-                Arrays.asList(8, 3, 2, 3));
-        String expectedOutput = 
-                    " 9879823│123"+SEPARATOR
-                  + " 984    │----"+SEPARATOR
-                  + " ---    │8323"+SEPARATOR
-                  + "   398"+SEPARATOR
-                  + "   369"+SEPARATOR
-                  + "   ---  "+SEPARATOR
-                  + "    292"+SEPARATOR
-                  + "    246"+SEPARATOR
-                  + "    --- "+SEPARATOR
-                  + "     463"+SEPARATOR
-                  + "     369"+SEPARATOR
-                  + "     ---"+SEPARATOR
-                  + "      94"+SEPARATOR
-                  + "";
-        assertEquals(expectedOutput, formatter.format(actualResult));
+        DivisionResult actual = new DivisionResult(
+                Arrays.asList(new DivisionStep(123, 123, 3), new DivisionStep(456, 369, 6)), 123, 123456, 87, 1003);
+
+        String expected = 
+                      " 123456│123"+SEPARATOR
+                    + " 123   │----"+SEPARATOR
+                    + " ---   │1003"+SEPARATOR
+                    + "    456"+SEPARATOR
+                    + "    369"+SEPARATOR
+                    + "    ---"+SEPARATOR
+                    + "     87"+SEPARATOR;
+        assertEquals(expected, formatter.format(actual));
     }
     
     @Test
     void divideInt_shouldReturnFormattedString_WhenCasualDivisionResult_2() {
-        DivisionResult actualResult = new DivisionResult(Arrays.asList(1234, 2085, 3367, 2898),
-                Arrays.asList(1026, 2052, 3078, 2736), Arrays.asList(4, 5, 7, 8), 342, 12345678, 162,
-                Arrays.asList(3, 6, 9, 8));
-        String expectedOutput = 
-                  " 12345678│342"+SEPARATOR
-                + " 1026    │----"+SEPARATOR
-                + " ----    │3698"+SEPARATOR
-                + "  2085"+SEPARATOR
-                + "  2052"+SEPARATOR
-                + "  ----   "+SEPARATOR
-                + "    3367"+SEPARATOR
-                + "    3078"+SEPARATOR
-                + "    ---- "+SEPARATOR
-                + "     2898"+SEPARATOR
-                + "     2736"+SEPARATOR
-                + "     ----"+SEPARATOR
-                + "      162"+SEPARATOR
-                + "";
-        assertEquals(expectedOutput, formatter.format(actualResult));
+        
+            DivisionResult actual = new DivisionResult(
+                    Arrays.asList(new DivisionStep(10, 10, 2),
+                            new DivisionStep(10, 10, 6)),10,100010001,1 ,10001000 );
+        
+        String expected = 
+                    " 100010001│10"      +SEPARATOR
+                  + " 10       │--------"+SEPARATOR
+                  + " --       │10001000"+SEPARATOR
+                  + "     10"            +SEPARATOR
+                  + "     10"            +SEPARATOR
+                  + "     --   "         +SEPARATOR
+                  + "         1"         +SEPARATOR;
+        assertEquals(expected, formatter.format(actual));
     }
     
     @Test
     void divideInt_shouldReturnFormattedString_WhenZeroDividend_3() {
-        DivisionResult actualResult = new DivisionResult(Arrays.asList(0),
-                Arrays.asList(0), Arrays.asList(1), 132, 0, 0,
-                Arrays.asList(0));
-        String expectedOutput = 
+        DivisionResult actual = new DivisionResult(Arrays.asList(new DivisionStep(0,0,1)), 132, 0, 0, 0);
+        String expected = 
                   " 0│132"+SEPARATOR
                 + " 0│-"+SEPARATOR
                 + " -│0"+SEPARATOR
                 + " 0"+SEPARATOR
                 + "";
-        assertEquals(expectedOutput, formatter.format(actualResult));
+        assertEquals(expected, formatter.format(actual));
     }
 }

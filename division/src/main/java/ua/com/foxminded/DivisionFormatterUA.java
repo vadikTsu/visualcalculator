@@ -14,8 +14,6 @@
  */
 package ua.com.foxminded;
 
-import java.util.stream.Collectors;
-
 public class DivisionFormatterUA extends DivisionFormatter {
 
     private final String NEW_LINE = System.lineSeparator();
@@ -23,31 +21,28 @@ public class DivisionFormatterUA extends DivisionFormatter {
     /**
      * Formats the result of an integer division according to UA region.
      *
-     * @param divRes the DivisionResult object containing the division result to
+     * @param divisionResult the DivisionResult object containing the division result to
      *               format
      * @return a formatted string representing the division result
      */
-    public String format(DivisionResult divisionRes) {
+    public String format(DivisionResult divisionResult) {
         StringBuilder result = new StringBuilder();
-     
 
-        int len = String.valueOf(divisionRes.dividend).length();
+        int len = String.valueOf(divisionResult.dividend).length();
         int mulLen;
 
-        for (int i = 0; i < divisionRes.reminderList.size(); i++) {
-            mulLen = divisionRes.multipleList.get(i).toString().length();
-            result.append(
-                    String.format(" %" + (divisionRes.pointerList.get(i)) + "s", divisionRes.reminderList.get(i)))
-                    .append(NEW_LINE);
-            result.append(
-                    String.format(" %" + (divisionRes.pointerList.get(i)) + "s", divisionRes.multipleList.get(i)))
-                    .append(NEW_LINE);
-            result.append(String.format(" %s%s%s", createString(divisionRes.pointerList.get(i) - mulLen, ' '),
-                    createString(mulLen, '-'), createString(len - divisionRes.pointerList.get(i), ' ')))
+        for (int i = 0; i < divisionResult.divisionSteps.size(); i++) {
+            mulLen = divisionResult.divisionSteps.get(i).multiple.toString().length();
+            result.append(String.format(" %" + (divisionResult.divisionSteps.get(i).pointer) + "s",
+                    divisionResult.divisionSteps.get(i).reminder)).append(NEW_LINE);
+            result.append(String.format(" %" + (divisionResult.divisionSteps.get(i).pointer) + "s",
+                    divisionResult.divisionSteps.get(i).multiple)).append(NEW_LINE);
+            result.append(String.format(" %s%s%s", createString(divisionResult.divisionSteps.get(i).pointer - mulLen, ' '),
+                    createString(mulLen, '-'), createString(len - divisionResult.divisionSteps.get(i).pointer, ' ')))
                     .append(NEW_LINE);
         }
-        
-        result.append(String.format(" %" + len + "s", divisionRes.fraction)).append(NEW_LINE);
+
+        result.append(String.format(" %" + len + "s", divisionResult.fraction)).append(NEW_LINE);
 
         int[] index = new int[3];
         for (int i = 0, j = 0; i < result.length(); i++) {
@@ -60,13 +55,11 @@ public class DivisionFormatterUA extends DivisionFormatter {
             }
         }
 
-        result.insert(index[2],
-                "│" + divisionRes.quotient.toString()) /*.stream().map(Object::toString).collect(Collectors.joining()))*/;
-
-        result.insert(index[1], createString(len - divisionRes.pointerList.get(0), ' ') + "│"
-                + createString(divisionRes.quotient.toString().length(), '-'));
-        result.insert(index[0], "│" + divisionRes.divisor);
-        result.replace(1, index[0], divisionRes.dividend.toString());
+        result.insert(index[2], "│" + divisionResult.quotient.toString());
+        result.insert(index[1], createString(len - divisionResult.divisionSteps.get(0).pointer, ' ') + "│"
+                + createString(divisionResult.quotient.toString().length(), '-'));
+        result.insert(index[0], "│" + divisionResult.divisor);
+        result.replace(1, index[0], divisionResult.dividend.toString());
 
         return result.toString();
     }
