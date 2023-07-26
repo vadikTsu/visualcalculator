@@ -7,24 +7,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class DivisionFormatterUATest {
-    
-       private static String SEPARATOR = System.lineSeparator(); 
-       private DivisionFormatterUA formatter;
-        
-       @BeforeEach
-       void setup() {
-           formatter = new DivisionFormatterUA();
-       }
 
+    private static String SEPARATOR = System.lineSeparator();
+    private DivisionFormatterUA formatter;
 
-    
+    @BeforeEach
+    void setup() {
+        formatter = new DivisionFormatterUA();
+    }
+
     @Test
-    void  format_shouldRReturnNullPointerException_whenNull() {
+    void format_shouldRReturnNullPointerException_whenNull() {
         assertThrows(NullPointerException.class, () -> {
             formatter.format(null);
         });
     }
-    
+
     @Test
     void divideInt_shouldReturnFormattedString_WhenCasualDivisionResult_1() {
         DivisionResult actual = new DivisionResult(
@@ -37,7 +35,7 @@ class DivisionFormatterUATest {
                     + "    456"+SEPARATOR
                     + "    369"+SEPARATOR
                     + "    ---"+SEPARATOR
-                    + "     87"+SEPARATOR;
+                    + "     87";
         assertEquals(expected, formatter.format(actual));
     }
     
@@ -52,10 +50,10 @@ class DivisionFormatterUATest {
                     " 100010001│10"      +SEPARATOR
                   + " 10       │--------"+SEPARATOR
                   + " --       │10001000"+SEPARATOR
-                  + "     10"            +SEPARATOR
-                  + "     10"            +SEPARATOR
+                  + "     10   "         +SEPARATOR
+                  + "     10   "         +SEPARATOR
                   + "     --   "         +SEPARATOR
-                  + "         1"         +SEPARATOR;
+                  + "         1"         ;
         assertEquals(expected, formatter.format(actual));
     }
     
@@ -66,8 +64,7 @@ class DivisionFormatterUATest {
                   " 0│132"+SEPARATOR
                 + " 0│-"+SEPARATOR
                 + " -│0"+SEPARATOR
-                + " 0"+SEPARATOR
-                + "";
+                + " 0";
         assertEquals(expected, formatter.format(actual));
     }
 }

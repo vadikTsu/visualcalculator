@@ -40,7 +40,7 @@ public class IntegerDivision {
         }
     
         int dividendSize = (int) Math.log10(Math.abs(dividend)) + 1;
-        int[] dividendDigits = this.toArray(dividend);
+        int[] dividendDigits = this.spliToDigits(dividend);
         int rightIndex = 0;
         int reminder = dividendDigits[rightIndex];
         List<DivisionStep> divisionSteps = new ArrayList<>();
@@ -73,7 +73,7 @@ public class IntegerDivision {
         return new DivisionResult(divisionSteps, divisor, dividend, lastReminder, quotient);
     }
 
-    private int[] toArray(int number) {
+    private int[] spliToDigits(int number) {
         String numberString = String.valueOf(number);
         int[] digits = new int[numberString.length()];
         for (int i = 0; i < numberString.length(); i++) {

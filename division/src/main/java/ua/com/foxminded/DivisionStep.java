@@ -2,9 +2,9 @@ package ua.com.foxminded;
 
 public class DivisionStep {
 
-    private Integer reminder;
-    private Integer multiple;
-    private Integer pointer;
+    private int reminder;
+    private int multiple;
+    private int pointer;
 
     public DivisionStep(Integer reminder, Integer multiple, Integer pointer) {
         this.multiple = multiple;
@@ -34,7 +34,7 @@ public class DivisionStep {
             return false;
         }
         DivisionStep other = (DivisionStep) obj;
-        return reminder.equals(other.reminder) && multiple.equals(other.multiple) && pointer.equals(other.pointer);
+        return reminder == other.reminder && multiple == other.multiple && pointer == other.pointer;
 
     }
 }

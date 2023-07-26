@@ -30,39 +30,35 @@ public class DivisionFormatterUA extends DivisionFormatter {
 
         int dividentSize = String.valueOf(divisionResult.getDividend()).length();
         int multipleSize;
+        
+        for (int i = 0; i < divisionResult.getDivisionSteps().size(); i++) {
 
-        for (int i = 0; i < divisionResult.divisionSteps.size(); i++) {
-            multipleSize = divisionResult.divisionSteps.get(i).getMultiple().toString().length();
-            result.append(String.format(" %" + (divisionResult.divisionSteps.get(i).getPointer()) + "s",
-                    divisionResult.divisionSteps.get(i).getReminder())).append(NEW_LINE);
-            result.append(String.format(" %" + (divisionResult.divisionSteps.get(i).getPointer()) + "s",
-                    divisionResult.divisionSteps.get(i).getMultiple())).append(NEW_LINE);
+            multipleSize = divisionResult.getDivisionSteps().get(i).getMultiple().toString().length();
             result.append(String.format(" %s%s%s",
-                    repeatString(divisionResult.divisionSteps.get(i).getPointer() - multipleSize, ' '),
-                    repeatString(multipleSize, '-'),
-                    repeatString(dividentSize - divisionResult.divisionSteps.get(i).getPointer(), ' ')))
-                    .append(NEW_LINE);
+                    repeatChar(divisionResult.getDivisionSteps().get(i).getPointer() - multipleSize, ' '),
+                    divisionResult.getDivisionSteps().get(i).getReminder(),
+                    repeatChar(dividentSize - divisionResult.getDivisionSteps().get(i).getPointer(), ' '))).append(NEW_LINE);
+            result.append(String.format(" %s%s%s",
+                    repeatChar(divisionResult.getDivisionSteps().get(i).getPointer() - multipleSize, ' '),
+                    divisionResult.getDivisionSteps().get(i).getMultiple(),
+                    repeatChar(dividentSize - divisionResult.getDivisionSteps().get(i).getPointer(), ' '))).append(NEW_LINE);
+            result.append(String.format(" %s%s%s",
+                    repeatChar(divisionResult.getDivisionSteps().get(i).getPointer() - multipleSize, ' '),
+                    repeatChar(multipleSize, '-'),
+                    repeatChar(dividentSize - divisionResult.getDivisionSteps().get(i).getPointer(), ' '))).append(NEW_LINE);
         }
 
         result.append(String.format(" %" + dividentSize + "s", divisionResult.getFraction())).append(NEW_LINE);
+        
+        return formatDivisionAlgorithmWithHead(result.toString() , divisionResult);
+    }
 
-        int[] index = new int[3];
-        for (int i = 0, j = 0; i < result.length(); i++) {
-            if (result.indexOf(NEW_LINE, i) == i) {
-                index[j] = i;
-                j++;
-            }
-            if (j == 3) {
-                break;
-            }
-        }
-
-        result.insert(index[2], "│" + divisionResult.getQuotient().toString());
-        result.insert(index[1], repeatString(dividentSize - divisionResult.divisionSteps.get(0).getPointer(), ' ') + "│"
-                + repeatString(divisionResult.getQuotient().toString().length(), '-'));
-        result.insert(index[0], "│" + divisionResult.getDivisor());
-        result.replace(1, index[0], divisionResult.getDividend().toString());
-
-        return result.toString();
+    private String formatDivisionAlgorithmWithHead(String algorithmResult, DivisionResult divisionResult){
+        String[] algorithmResultRows = algorithmResult.split(NEW_LINE);
+        algorithmResultRows[0] = " "+divisionResult.getDividend()+"│"+ divisionResult.getDivisor();
+        algorithmResultRows[1]+="│"
+                + repeatChar(divisionResult.getQuotient().toString().length(), '-');
+        algorithmResultRows[2]+="│" + divisionResult.getQuotient().toString();
+        return String.join(NEW_LINE, algorithmResultRows);
     }
 }

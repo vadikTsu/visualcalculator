@@ -9,7 +9,7 @@ public abstract class DivisionFormatter {
      *               format
      * @return a formatted string representing the division result
      */
-    abstract public String format(DivisionResult divRes);
+    abstract public String format(DivisionResult divisionResult);
 
 
     /**
@@ -19,11 +19,11 @@ public abstract class DivisionFormatter {
      * @param chararcter the character to repeat in the string
      * @return a string consisting of the specified number of characters
      */
-    String repeatString(int number, char chararcter) {
-        StringBuilder sb = new StringBuilder();
+    String repeatChar(int number, char character) {
+        StringBuilder repeated = new StringBuilder();
         for (int i = 0; i < number; i++) {
-            sb.append(chararcter);
+            repeated.append(character);
         }
-        return sb.toString();
+        return repeated.toString();
     }
 }
