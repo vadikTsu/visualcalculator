@@ -18,8 +18,6 @@ import java.util.List;
 
 public class DivisionResult {
 
-
-
     private List<DivisionStep> divisionSteps;
     private int quotient;
     private int divisor;
@@ -38,8 +36,7 @@ public class DivisionResult {
      * @see {@link IntegerDivision}
      * @see {@link DivisionFormatter}
      */
-    public DivisionResult(List<DivisionStep> divisionSteps, Integer divisor, Integer dividend, Integer fraction,
-            Integer quotient) {
+    public DivisionResult(List<DivisionStep> divisionSteps, int divisor, int dividend, int fraction, int quotient) {
         this.divisionSteps = divisionSteps;
         this.divisor = divisor;
         this.dividend = dividend;
@@ -51,19 +48,19 @@ public class DivisionResult {
         return divisionSteps;
     }
 
-    public Integer getQuotient() {
+    public int getQuotient() {
         return quotient;
     }
 
-    public Integer getDivisor() {
+    public int getDivisor() {
         return divisor;
     }
 
-    public Integer getDividend() {
+    public int getDividend() {
         return dividend;
     }
 
-    public Integer getFraction() {
+    public int getFraction() {
         return fraction;
     }
 
@@ -77,7 +74,6 @@ public class DivisionResult {
         }
         DivisionResult other = (DivisionResult) obj;
         return this.divisionSteps.equals(other.getDivisionSteps()) && divisor == other.divisor
-                && dividend == other.dividend && fraction == other.fraction
-                && quotient == other.quotient;
+                && dividend == other.dividend && fraction == other.fraction && quotient == other.quotient;
     }
 }

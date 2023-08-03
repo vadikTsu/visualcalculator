@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) { 
+    public static void main(String[] args) {
         System.out.println("WELCOME TO COOL INTEGER CALCULATOR APP");
         System.out.println("Available commands:\n1 - Integer division");
         try (Scanner scanner = new Scanner(System.in)) {
@@ -30,7 +30,7 @@ public class Main {
             DivisionResult result = integerDivision.divide(dividend, divisor);
             System.out.println(formatter.format(result));
 
-        }finally {
+        } finally {
             System.out.println("process terminated");
         }
     }
