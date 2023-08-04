@@ -6,21 +6,21 @@ public class DivisionStep {
     private int multiple;
     private int pointer;
 
-    public DivisionStep(Integer reminder, Integer multiple, Integer pointer) {
+    public DivisionStep(int reminder, int multiple, int pointer) {
         this.multiple = multiple;
         this.pointer = pointer;
         this.reminder = reminder;
     }
 
-    public Integer getReminder() {
+    public int getReminder() {
         return reminder;
     }
 
-    public Integer getMultiple() {
+    public int getMultiple() {
         return multiple;
     }
 
-    public Integer getPointer() {
+    public int getPointer() {
         return pointer;
     }
 
