@@ -5,8 +5,8 @@ public abstract class DivisionFormatter {
     /**
      * Formats the result of an integer division.
      *
-     * @param divRes the DivisionResult object containing the division result to
-     *               format
+     * @param divisionResult the DivisionResult object containing the division
+     *                       result to format
      * @return a formatted string representing the division result
      */
     abstract String format(DivisionResult divisionResult);
@@ -26,7 +26,13 @@ public abstract class DivisionFormatter {
         return repeated.toString();
     }
 
-    int lengthOfInt(int number) {
+    /**
+     * Calculates a number of integer characters.
+     *
+     * @param {@code number} integer
+     * @return a number of characters
+     */
+    int claculateLengthOfInt(int number) {
         return (int) Math.log10(number) + 1;
     }
 }

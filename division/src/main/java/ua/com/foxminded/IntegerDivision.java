@@ -23,7 +23,7 @@ public class IntegerDivision {
      * Returns a DivisionResult object with a integer division algorithm.
      * <p>
      * This method takes a dividend, divisor as input, performs integer division,
-     * displaying the steps of the division algorithm. *
+     * collecting the steps of the division algorithm. *
      * 
      * @param dividend the dividend to be divided (an integer)
      * @param divisor  the divisor (an integer)

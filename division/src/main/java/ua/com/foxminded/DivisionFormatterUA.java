@@ -48,7 +48,7 @@ public class DivisionFormatterUA extends DivisionFormatter {
     private String formatDivisionAlgorithmWithHead(String algorithmResult, DivisionResult divisionResult) {
         String[] algorithmResultRows = algorithmResult.split(NEW_LINE);
         algorithmResultRows[0] = " " + divisionResult.getDividend() + "│" + divisionResult.getDivisor();
-        algorithmResultRows[1] += "│" + repeatChar(lengthOfInt(divisionResult.getDivisor()), '-');
+        algorithmResultRows[1] += "│" + repeatChar(claculateLengthOfInt(divisionResult.getDivisor()), '-');
         algorithmResultRows[2] += "│" + String.valueOf(divisionResult.getQuotient());
         return String.join(NEW_LINE, algorithmResultRows);
     }

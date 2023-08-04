@@ -3,11 +3,11 @@
   <groupId>ua.com.foxminded</groupId>
   <artifactId>division</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>IntegerDivision</name>
+    <name>IntegerDivision</name>
     <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <junit.jupiter.version>5.9.3</junit.jupiter.version>
-  </properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <junit.jupiter.version>5.9.3</junit.jupiter.version>
+    </properties>
   
   <dependencies>
     <dependency>
