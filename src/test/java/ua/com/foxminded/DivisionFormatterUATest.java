@@ -48,13 +48,13 @@ class DivisionFormatterUATest {
                 Arrays.asList(new DivisionStep(10, 10, 2), new DivisionStep(10, 10, 6)), 10, 100010001, 1, 10001000));
 
         String expected = 
-                    " 100010001│10"      + SEPARATOR
-                  + " 10       │--"      + SEPARATOR
-                  + " --       │10001000"+ SEPARATOR
-                  + "     10   "         + SEPARATOR
-                  + "     10   "         + SEPARATOR
-                  + "     --   "         + SEPARATOR
-                  + "         1"         ;
+                    " 100010001│10" + SEPARATOR
+                  + " 10       │--" + SEPARATOR
+                  + " --       │10001000" + SEPARATOR
+                  + "     10   " + SEPARATOR
+                  + "     10   " + SEPARATOR
+                  + "     --   " + SEPARATOR
+                  + "         1";
         assertEquals(expected, actual);
     }
     

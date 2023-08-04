@@ -29,7 +29,7 @@ public abstract class DivisionFormatter {
     /**
      * Calculates a number of integer characters.
      *
-     * @param {@code number} integer
+     * @param number is an integer
      * @return a number of characters
      */
     int claculateLengthOfInt(int number) {
